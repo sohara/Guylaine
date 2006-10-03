@@ -1,5 +1,5 @@
 class Admin::ImageController < ApplicationController
-  
+  model :image
   def create
     @gallery = Gallery.find(params[:gallery_id])
     @image = Image.create! params[:image]
