@@ -31,7 +31,7 @@ role :db,  "209.172.33.52", :primary => true
 # OPTIONAL VARIABLES
 # =============================================================================
 set :deploy_to, "/var/vhosts/sohara.com/guylaine" # defaults to "/u/apps/#{application}"
-set :user, "alien8web"            # defaults to the currently logged in user
+set :user, "soharaweb"            # defaults to the currently logged in user
 # set :scm, :darcs               # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
