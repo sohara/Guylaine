@@ -35,7 +35,7 @@ var UploadProgress = {
   StatusBar: {
     statusBar: null,
     statusText: null,
-    statusBarWidth: 500,
+    statusBarWidth: 400,
   
     create: function() {
       this.statusBar  = this._createStatus('status-bar');

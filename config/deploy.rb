@@ -145,6 +145,7 @@ task :long_deploy do
     update_code
     disable_web
     symlink
+    image_sym_link
     migrate
   end
 
