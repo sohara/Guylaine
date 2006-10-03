@@ -105,6 +105,36 @@ task :helper_demo do
   delete "#{shared_path}/system/maintenance.html"
 end
 
+desc "Create the symlink to the database.yml file in /shared"
+task :db_sym_link, :roles => :app do
+    run "ln -s /var/vhosts/sohara.com/guylaine/shared/database.yml #{current_release}/config/database.yml"
+end
+
+desc "Create symlink to svn checkout of edge rails in /shared rails doesn't get checked out with every deploy"
+task :edge_rails_sym_link, :roles => :app do
+    run "ln -s /var/vhosts/sohara.com/guylaine/shared/rails #{current_release}/vendor/rails"
+end
+
+desc "Create the symlink to the image dirs for uploaded images"
+task :image_sym_link, :roles => :app do
+  run "ln -s /var/vhosts/sohara.com/guylaine/shared/uploaded #{current_release}/public/uploaded"
+end
+
+desc <<-DESC
+A macro-task that updates the code, fixes the symlink, and restarts the
+application servers.
+DESC
+task :deploy do
+  transaction do
+    update_code
+    db_sym_link
+    edge_rails_sym_link
+    symlink
+  end
+  cleanup
+  restart
+end
+
 # You can use "transaction" to indicate that if any of the tasks within it fail,
 # all should be rolled back (for each task that specifies an on_rollback
 # handler).
