@@ -1,0 +1,8 @@
+<h3>Create a new gallery</h3>
+<%= form_remote_tag :url => { :action => :create },
+										:html => {:class => "myform"},
+							  		:loading => "Element.show('submit_spinner')"  %>
+
+  <%= render :partial => 'admin/gallery/form' %>
+
+<%= end_form_tag %>

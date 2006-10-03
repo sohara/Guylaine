@@ -1,0 +1,65 @@
+<div class="mybox" style="float:right;width:450px;background-color:#FFF;">
+	<h3>Add an image</h3>
+	<%= error_messages_for 'image' %>
+	<p><%= link_to (@upid = Time.now.to_i.to_s), :action => 'status', :upload_id => @upid %></p>
+		
+	<% form_for :image, 
+							:url => { :controller => 'image', 
+												:action => 'create',:upload_id => @upid }, 
+							:html => { 	:multipart => true, 
+												 	:target => 'upload', 
+													:onsubmit => "UploadProgress.monitor('#{escape_javascript @upid}')",
+													:id => 'image_form',
+													:class => 'myform'}  do |f| -%>
+		<%= hidden_field_tag :gallery_id, @gallery.id %>
+	  <label for="image_uploaded_data">Image:</label>
+		<%= f.file_field :uploaded_data %><br />
+	  
+		<label for="image_title_en">Title (en):</label>
+		<%= f.text_field :title_en %><br />
+		
+		<label for="image_title_fr">Title (fr):</label>
+		<%= f.text_field :title_fr %><br />
+		
+		<label for="submit">&nbsp;</label>
+		<%= submit_tag :Create, :class => "button"  %><br />
+		
+	<% end -%>
+
+	<div id="results"></div>
+	<div id="progress-bar"></div>
+
+	<iframe id="upload" name="upload" src="about:blank" style="width:0px;height:0px;"></iframe>
+	
+</div>
+
+<div class="mybox" style="width:370px; background-color:#FFF;">
+<div class="myform">
+<label for="gallery_title_en">Title (en):</label>
+<div class="myfield"><%= @gallery.title_en %></div><br />
+
+<label for="gallery_title_fr">Title (fr):</label>
+<div class="myfield"><%= @gallery.title_fr %></div><br />
+
+<label for="gallery_description_en">Description (en):</label>
+<div class="myfield"><%= @gallery.description_en %></div><br />
+
+<label for="gallery_description_fr">Description (fr):</label>
+<div class="myfield"><%= @gallery.description_fr %></div><br />
+</div>
+</div>
+
+<br class="clearboth" />
+
+<div class="mybox">
+	<h3>Images in Gallery</h3>
+	<ul class="image-list" id="gallery-image-list">
+		<% @gallery.images.each do |image| -%>
+		<li class="picture">
+		<%= link_to(image_tag(image.public_filename('size96')), image.public_filename) %>
+		Title (en): <%= image.title_en %>
+		<br  class="clearboth"/>
+		</li>
+		<% end -%>
+	</ul>
+</div>
