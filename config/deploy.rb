@@ -127,6 +127,7 @@ DESC
 task :deploy do
   transaction do
     update_code
+    image_sym_link
     db_sym_link
     edge_rails_sym_link
     symlink
@@ -145,7 +146,6 @@ task :long_deploy do
     update_code
     disable_web
     symlink
-    image_sym_link
     migrate
   end
 
