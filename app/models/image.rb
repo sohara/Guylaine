@@ -5,7 +5,5 @@ class Image < ActiveRecord::Base
                       :thumbnails => { :size800 => '800>', :size250 => '250>', :size96 => '96>' }
   validates_as_attachment
   belongs_to :gallery
-  
-  
-  chment :storage => :file_system, :thumbnails => { :normal => '300>', :thumb => '75' }
+
 end
