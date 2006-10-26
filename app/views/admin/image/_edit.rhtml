@@ -1,0 +1,12 @@
+<h3>Edit image data</h3>
+<%= error_messages_for 'image' %>
+<% form_remote_for :image, @image,
+						:url => { :controller => 'image', 
+											:action => 'update', :id => @image }, 
+						:html => { 	:id => 'image_form',
+												:class => 'myform'},
+						:loading => "Element.show(submit_spinner#{@image.id})"					do |f| -%>
+	
+<%= render :partial => 'admin/image/form', :locals => { :f => f } %>
+	
+<% end -%>
