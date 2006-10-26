@@ -1,0 +1,11 @@
+<h3>Edit gallery</h3>
+<% form_remote_for :gallery, @gallery,
+						:url => { :controller => 'gallery', 
+											:action => 'update', :id => @gallery }, 
+						:html => { 	:id => 'image_form',
+												:class => 'myform'},
+						:loading => "Element.show(submit_spinner)"					do |f| -%>
+	
+<%= render :partial => 'admin/gallery/form', :locals => { :f => f } %>
+	
+<% end -%>

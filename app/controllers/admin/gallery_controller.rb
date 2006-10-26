@@ -38,4 +38,33 @@ class Admin::GalleryController < ApplicationController
     @image = Image.new
   end
   
+  def edit
+    @gallery = Gallery.find(params[:id])
+    render :update do |page|
+      page[:innerbox].replace_html :partial => 'admin/gallery/edit'
+      page << "showBox();"
+    end
+  end
+  
+  def update
+    @gallery = Gallery.find(params[:id])
+    unless @gallery.update_attributes(params[:gallery])
+      render :update do |page|
+        page[:innerbox].replace_html :partial => 'admin/gallery/edit'
+      end
+    else
+      render :update do |page|
+        page << "hideBox();"
+        page["gallery-data"].replace :partial => 'admin/gallery/show'
+        page["gallery-data"].visual_effect :highlight, :startcolor => "#cf2121", :endcolor => "#E8E8E8"
+      end
+    end
+  end
+  
+  def destroy
+    Gallery.find(params[:id]).destroy
+    render :update do |page|
+      page["gallery_#{params[:id]}"].remove
+    end
+  end
 end

@@ -4,6 +4,7 @@
 function showBox(){
     $('overlay').show();
     center('box');
+	setDisplayBlock('box');
     return false;
 }
 
@@ -13,6 +14,14 @@ function hideBox(){
     return false;
 }
 
+function setDisplayBlock(element){
+	try{
+        element = $(element);
+    }catch(e){
+        return;
+    }
+    element.style.display  = 'block';
+}
 function center(element){
     try{
         element = $(element);
@@ -63,6 +72,4 @@ function center(element){
 
     element.style.left = setX + "px";
     element.style.top  = setY + "px";
-
-    element.style.display  = 'block';
 }

@@ -1,1 +1,14 @@
-<li><%= link_to @gallery.title_en, :action => 'show', :id => @gallery %></li>
+<li class="picture" id="gallery_<%= @gallery.id %>">
+	<div style="float:right;">
+		<span id="image_spinner<%= @gallery.id %>" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span>
+		<%= link_to_remote "Destroy", 	:url => { :controller => :gallery, :action => "destroy", :id => @gallery },
+															:loading => "Element.show('image_spinner#{@gallery.id}')",
+															:complete => "Element.hide('image_spinner#{@gallery.id}')",
+															:confirm => "Are you sure you want to delete this entire gallery?" %>
+	</div>
+	<% unless @gallery.images.empty? %>
+<%= link_to(image_tag(@gallery.images.sort_by{|i| i.position}.first.public_filename('size96')), :action => 'show', :id => @gallery ) %><% end %>
+	<%= link_to @gallery.title_en, :action => 'show', :id => @gallery %> <br class="clearnone"/>
+	Contains <%= @gallery.images.size.to_s + " image" + (@gallery.images.size == 1 ? "" : "s") %> 
+<br  class="clearboth"/>	
+</li>

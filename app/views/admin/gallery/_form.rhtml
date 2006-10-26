@@ -1,4 +1,4 @@
-<% if @gallery %><%= error_messages_for 'gallery' %><% end %>
+<%= error_messages_for 'gallery' %>
 <br />
 <label for="gallery_title_en">Title (en):</label>
 <%= text_field 'gallery', 'title_en'  %><br />
@@ -12,5 +12,5 @@
 <label for="gallery_description_fr">Description (fr):</label>
 <%= text_area 'gallery', 'description_fr', "cols" => 20, "rows" => 4  %><br />
 
-<label for="save">&nbsp;</label>
-<%= submit_tag 'Save', :class => "button" %><span id="submit_spinner" style="display:none;"><%= image_tag "spinner-fff.gif", :class => "spinner" %></span><br />
+<label for="save">&nbsp;<span id="submit_spinner" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span><br /></label>
+<%= submit_tag 'Save', :class => "button" %>

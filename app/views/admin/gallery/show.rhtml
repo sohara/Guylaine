@@ -1,8 +1,20 @@
+<!-- Lightbox divs -->
+<div id="overlay" onclick="hideBox()" style="display:none">
+</div>
+
+<div id="box" style="display:none">
+    <img id="close" src="/images/close.gif" onclick="hideBox()" alt="Close" 
+         title="Close this window" />
+<div id="innerbox">
+</div>
+</div>
+<!-- End Lightbox divs -->
+
 <div class="mybox" style="float:right;width:450px;background-color:#FFF;">
 	<h3>Add an image</h3>
 	<%= error_messages_for 'image' %>
-	<p><%= link_to (@upid = Time.now.to_i.to_s), :action => 'status', :upload_id => @upid %></p>
-		
+	
+	<% @upid = Time.now.to_i.to_s %>	
 	<% form_for :image, 
 							:url => { :controller => 'image', 
 												:action => 'create',:upload_id => @upid }, 
@@ -11,42 +23,25 @@
 													:onsubmit => "UploadProgress.monitor('#{escape_javascript @upid}')",
 													:id => 'image_form',
 													:class => 'myform'}  do |f| -%>
-		<%= hidden_field_tag :gallery_id, @gallery.id %>
-	  <label for="image_uploaded_data">Image:</label>
-		<%= f.file_field :uploaded_data %><br />
-	  
-		<label for="image_title_en">Title (en):</label>
-		<%= f.text_field :title_en %><br />
 		
-		<label for="image_title_fr">Title (fr):</label>
-		<%= f.text_field :title_fr %><br />
-		
-		<label for="submit">&nbsp;</label>
-		<%= submit_tag :Create, :class => "button"  %><br />
+  <%= render :partial => 'admin/image/form', :locals => { :f => f } %>
 		
 	<% end -%>
 
 	<div id="results"></div>
 	<div id="progress-bar"></div>
 
-	<iframe id="upload" name="upload" src="about:blank" style="width:0px;height:0px;"></iframe>
+	<iframe id="upload" name="upload" src="about:blank" style="border: 0px none ; position: absolute; left: -100px; width: 0px; height: 0px;"></iframe>
 	
 </div>
 
-<div class="mybox" style="width:370px; background-color:#FFF;">
-<div class="myform">
-<label for="gallery_title_en">Title (en):</label>
-<div class="myfield"><%= @gallery.title_en %></div><br />
+<%= render :partial => "show" %>
 
-<label for="gallery_title_fr">Title (fr):</label>
-<div class="myfield"><%= @gallery.title_fr %></div><br />
-
-<label for="gallery_description_en">Description (en):</label>
-<div class="myfield"><%= @gallery.description_en %></div><br />
-
-<label for="gallery_description_fr">Description (fr):</label>
-<div class="myfield"><%= @gallery.description_fr %></div><br />
-</div>
+<div class="floatbutton">
+<%= link_to_remote "Edit", 	:url => { :action => "edit", :id => @gallery },
+							:loading => "Element.show('edit_artist_spinner')",
+							:complete => "Element.hide('edit_artist_spinner')" %>
+&nbsp;<span id="edit_artist_spinner" style="display:none;"><%= image_tag "spinner-fff.gif", :class => "spinner" %></span>
 </div>
 
 <br class="clearboth" />
@@ -54,12 +49,14 @@
 <div class="mybox">
 	<h3>Images in Gallery</h3>
 	<ul class="image-list" id="gallery-image-list">
-		<% @gallery.images.each do |image| -%>
-		<li class="picture">
-		<%= link_to(image_tag(image.public_filename('size96')), image.public_filename) %>
-		Title (en): <%= image.title_en %>
-		<br  class="clearboth"/>
-		</li>
-		<% end -%>
+		
+		<% for @image in @gallery.images.sort_by{|image| image.position} %>
+		<%= render :partial => 'admin/image/show', :collection => @artist_images %>
+		<% end %>
+		
 	</ul>
+	
+	<%= sortable_element 'gallery-image-list',
+	 	:url => {:controller => 'image', :action => 'sort', :id => @gallery },
+		:complete => visual_effect(:highlight, 'gallery-image-list') %>
 </div>

@@ -4,6 +4,8 @@ class Image < ActiveRecord::Base
                       :file_system_path  => 'public/uploaded',
                       :thumbnails => { :size800 => '800>', :size250 => '250>', :size96 => '96>' }
   validates_as_attachment
+#  validates_presence_of :title_en, :title_fr, :message => "must be present"
+  
   belongs_to :gallery
-
+  acts_as_list :scope => :gallery
 end

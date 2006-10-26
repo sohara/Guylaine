@@ -159,6 +159,24 @@ textarea {
 
 }
 
+.floatbutton a {
+	color: #cf2121;
+	background-color: #ccc;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-bottom: 2px solid #666;
+	border-right: 2px solid #666;
+	text-decoration: none;
+	padding: 3px;
+	margin: 2px 0;
+	font-weight: bold;
+}
+
+.floatbutton a:hover {
+	color: #cf2121;
+	background-color: #fff;
+}
+
 /****************************/
 /* Admin Top Menu           */
 /****************************/
@@ -417,6 +435,50 @@ li.picture img.spinner {
     clear: left;
     }	
 
+.picture br.clearnone {
+    clear: none;
+    }
+
 .picture img {
 	border: 0;
+}
+
+/************************************************************/
+/* Styles for AR model error messages (validation problems) */
+/************************************************************/
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
 }
