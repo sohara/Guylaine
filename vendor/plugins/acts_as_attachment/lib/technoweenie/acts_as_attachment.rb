@@ -141,6 +141,7 @@ module Technoweenie # :nodoc:
     end
 
     module InstanceMethods
+      logger = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log")
       # Checks whether the attachment's content type is an image content type
       def image?
         self.class.image?(content_type.to_s.strip)
@@ -196,15 +197,28 @@ module Technoweenie # :nodoc:
           @save_attachment = false
           return nil
         end
-        with_image data do |img|
-          resized_img       = (attachment_options[:resize_to] && parent_id.nil?) ? 
-            thumbnail_for_image(img, attachment_options[:resize_to]) : img
-          data              = resized_img.to_blob
-          self.width        = resized_img.columns if respond_to?(:width)
-          self.height       = resized_img.rows    if respond_to?(:height)
-          callback_with_args :after_resize, resized_img
-        end if image?
-        self.size = data.length
+        
+        if image?
+          unless parent_id.nil?
+            with_image data do |img|
+              resized_img       = (attachment_options[:resize_to] && parent_id.nil?) ? 
+                thumbnail_for_image(img, attachment_options[:resize_to]) : img
+              data              = resized_img.to_blob { self.quality = 95 }
+              self.width        = resized_img.columns if respond_to?(:width)
+              self.height       = resized_img.rows    if respond_to?(:height)
+              callback_with_args :after_resize, resized_img
+            end
+          else 
+            #this is for images not being thumbnailed (originals)
+            logger.info "data class: #{data.class}"
+            binary_data = Magick::Image::from_blob(data).first
+            self.width = binary_data.columns
+            self.height = binary_data.rows
+          end
+        end
+        
+        self.size =  data.length 
+        logger.info "self.size: #{self.size}"
         @attachment_data = data
         @save_attachment = true
       end
@@ -223,7 +237,7 @@ module Technoweenie # :nodoc:
         [width.to_s, height.to_s] * 'x'
       end
 
-      # Allows you to work with an RMagick representation of the attachment in a block.  
+      # Allows you to work with an RMagick representation of the attachment in a block.
       #
       #   @attachment.with_image do |img|
       #     self.data = img.thumbnail(100, 100).to_blob
