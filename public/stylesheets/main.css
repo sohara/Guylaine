@@ -1,0 +1,137 @@
+/*******************/
+/* Tag Definitions */
+/*******************/
+
+body {
+	background: #000;
+	margin: 0;
+}
+
+body, h1, h2, h3, h4, h5, p, ul, li, span {
+  font-family: arial, helvetica, sans-serif;
+  font-size:   1em;
+  line-height: 140%;
+  color: #ccc;
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 2em;	
+ 	padding: 20px 0 0 10px;
+	margin: 5px 0 15px 0;
+	color: #cf2121;
+}
+
+h2 {
+	font-weight: normal;
+	font-size: 1.5em;	
+ 	padding: 0;
+	margin: 10px 0;
+	color: #333;
+	border-bottom: 1px solid #999;
+}
+
+h3 {
+	font-weight: normal;
+	font-size: 1.25em;	
+ 	padding: 0;
+	margin: 15px 0;
+	color: #333;
+	border-bottom: 1px solid #999;
+}
+
+h4 {
+	font-weight: normal;
+	font-size: 1em;	
+ 	padding: 0;
+	margin: 0;
+	color: #333;
+	border-bottom: 1px dotted #999;
+}
+
+h5 {
+	padding: 0;
+	margin: 15px 0 0 0;
+}
+
+a, a:hover {
+	color: #cf2121;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	background-color: #fff;
+}
+
+textarea {
+	font-family: Arial, Helvetica, sans-serif;
+	width: 100%;
+}
+/****************************/
+/* ID'ed Element Defintions */
+/****************************/
+
+#wrapper {
+	width: 900px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#header {
+	background-color: #000;
+	color: #ccc;
+	padding: 0;
+	height: 70px;
+	margin: 0;
+}
+
+#header_title {
+    padding: 25px 0px 0px 15px;
+    margin: 0;
+    float: left;
+    line-height: 100%;
+}
+
+#main {
+	padding: 10px;
+	margin: 0;
+	text-align: left;
+}
+
+#topmenu {
+	margin: 0;
+	padding: 0;
+	height: 70px;
+	position: relative;
+	right: 0;
+	}
+	
+.clearboth {
+	clear: both;
+	}	
+
+/****************************/
+/* Gallery Index Page       */
+/****************************/	
+
+div.index-image {
+	background-color: #161616;
+	padding: 10px;
+	margin: 0 5px;
+	width: 252px;
+	height:  252px;
+	line-height: 252px;
+}
+
+
+div.index-image img {
+	border:  1px solid #ccc;
+	vertical-align: middle;
+}
+
+.imagerow {
+	background-color: blue;
+	margin: 0 auto;
+	width:  auto;
+}
