@@ -16,6 +16,7 @@ class GalleryController < ApplicationController
   def view_image
     @image = Image.find(params[:id])
     render :update do |page|
+      page[:box].hide
       page[:innerbox].replace_html :partial => 'gallery/view_image' 
       #page[:box].hide
       page[:overlay].show
