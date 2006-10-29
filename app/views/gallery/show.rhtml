@@ -1,0 +1,27 @@
+<!-- Lightbox divs -->
+<div id="overlay" onclick="hideBox()" style="display:none">
+</div>
+
+	<div id="box" style="display:none;width:<%= (@gallery.images.sort_by{ |i| i.position }.first.thumbnails.detect{|t|t.thumbnail == "size800"}.width + 0).to_s + "px" %>;height:<%= (@gallery.images.sort_by{ |i| i.position }.first.thumbnails.detect{|t|t.thumbnail == "size800"}.height + 30).to_s + "px" %>;">
+	    <img id="close" src="/images/close.gif" onclick="hideBox()" alt="Close" 
+	         title="Close this window" />
+	<div id="innerbox">
+		<%= render :partial => "view_image" %>
+	</div>
+</div>
+<!-- End Lightbox divs -->
+
+<div id="content">
+	<h3><%= @gallery.title_en %></h3>
+	
+</div>
+<div id="footer">
+	<ul style="width:<%= (@gallery.images.size * 118)  %>px;">
+	<% for image in @gallery.images.sort_by{|i|i.position} %>
+		<li>
+			<%= link_to_remote(image_tag(image.public_filename('size96')), 
+												:url => { :action => :view_image, :id => image} ) %>
+		</li>
+	<% end %>
+	</ul>
+</div>

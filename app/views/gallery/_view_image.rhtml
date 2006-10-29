@@ -1,0 +1,14 @@
+<% if @image.nil? %>
+<% @image = @gallery.images.sort_by{ |i| i.position }.first %>	
+<% end %>
+<%= image_tag(@image.public_filename('size800')) %>
+<div id="navbar">
+	<div style="float:right">
+				<% unless @image.gallery.images.sort_by{|i|i.position}[@image.gallery.images.sort_by{|i| i.position}.index(@image) + 1].nil? %>
+				<%= link_to_remote('→', :url => { :action => :view_image, :id => @image.gallery.images.sort_by{|i|i.position}[@image.gallery.images.sort_by{|i| i.position}.index(@image) + 1] }) %>
+				<% end %>
+	</div>
+				<% unless @image.gallery.images.sort_by{|i|i.position}.index(@image) == 0 %>
+				<%= link_to_remote('←', :url => { :action => :view_image, :id => @image.gallery.images.sort_by{|i|i.position}[@image.gallery.images.sort_by{|i| i.position}.index(@image) - 1] }) %>
+				<% end %>
+</div>

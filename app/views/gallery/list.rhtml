@@ -1,12 +1,14 @@
 
-Galleries
+<h3>Galleries</h3>
+
+<div id="main-gallery">
+<br class="clearboth" />
+<ul>
 <% for @gallery in @galleries %>
-<%= cycle('<div class="imagerow">', ' ', ' ',   :name => 'outerdiv') %>
-	<%= cycle('<div style="float:right;background-color:pink;">', ' ', ' ',   :name => '2wrap') %>
-	<div class="index-image" <%= cycle('style="float:right;"', 'style="float:left;', ' ', :name => 'style') %>>
-<%= link_to(image_tag(@gallery.images.sort_by{|i| i.position}.first.public_filename('size250')), 
+<li><span class="image-wrap"><%= link_to(image_tag(@gallery.images.sort_by{|i| i.position}.first.public_filename('size250')), 
 					:action => 'show', :id => @gallery ) %>
-	</div>
-	<%= cycle(' ', '</div>', ' ', :name => 'close2wrap') %>
-	<%= cycle(' ', ' ', '</div> <br class="clearboth">', :name => 'closeouter') %>
+</span></li>
 <% end -%>
+</ul>
+<br class="clearboth" />
+</div>
