@@ -5,7 +5,7 @@ var UploadProgress = {
       this.periodicExecuter = new PeriodicalExecuter(function() {
         if(!UploadProgress.uploading) return;
         new Ajax.Request('/admin/image/progress?upload_id=' + upid);
-      }, 1);
+      }, .5);
     }
 
     this.uploading = true;
