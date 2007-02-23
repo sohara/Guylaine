@@ -1,4 +1,4 @@
-class Admin::ImageController < ApplicationController
+class Admin::ImageController < Admin::BaseController
 
   def create
     @gallery = Gallery.find(params[:gallery_id])

@@ -1,5 +1,4 @@
-class Admin::GalleryController < ApplicationController
-  layout 'admin'
+class Admin::GalleryController < Admin::BaseController
   
   def index
     list
