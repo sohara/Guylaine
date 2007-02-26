@@ -1,3 +1,4 @@
+<% @title = "Guylaine Bédard: #{@gallery.title_en}"  -%>
 <!-- Lightbox divs -->
 <div id="overlay" onclick="hideBox()" style="display:none">
 </div>
@@ -13,6 +14,8 @@
 
 <div id="content">
 	<h3><%= @gallery.title_en %></h3>
+	
+	<p><%= @gallery.description_en %></p>
 	
 </div>
 <div id="footer">

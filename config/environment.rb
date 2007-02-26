@@ -3,6 +3,7 @@
 # Following configurations are for the use of Unicode strings
 $KCODE = 'u'
 require 'jcode'
+require 'rubygems'
 require_gem 'rmagick'
 # Uncomment below to force Rails into production mode when 
 # you don't control web/app server and can't set it the proper way
