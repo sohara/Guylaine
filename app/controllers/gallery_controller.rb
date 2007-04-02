@@ -6,7 +6,12 @@ class GalleryController < ApplicationController
   end
   
   def list
-    @galleries = Gallery.find :all
+   @galleries = Gallery.find :all, :conditions => ["galleries.hidden = ?", false]
+  end
+  
+  def list_hidden
+    @galleries = Gallery.find :all, :conditions => ["galleries.hidden = ?", true]
+    render :action => 'list'
   end
   
   def show

@@ -2,37 +2,38 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 5) do
 
   create_table "galleries", :force => true do |t|
-    t.column "title_en", :string
-    t.column "title_fr", :string
+    t.column "title_en",       :string
+    t.column "title_fr",       :string
     t.column "description_en", :text
     t.column "description_fr", :text
-    t.column "created_at", :datetime
+    t.column "created_at",     :datetime
+    t.column "hidden",         :boolean
   end
 
   create_table "images", :force => true do |t|
-    t.column "content_type", :string
-    t.column "filename", :string
-    t.column "size", :integer
-    t.column "gallery_id", :integer
-    t.column "parent_id", :integer
-    t.column "thumbnail", :string
-    t.column "width", :integer
-    t.column "height", :integer
-    t.column "title_en", :string
-    t.column "title_fr", :string
+    t.column "content_type",   :string
+    t.column "filename",       :string
+    t.column "size",           :integer
+    t.column "gallery_id",     :integer
+    t.column "parent_id",      :integer
+    t.column "thumbnail",      :string
+    t.column "width",          :integer
+    t.column "height",         :integer
+    t.column "title_en",       :string
+    t.column "title_fr",       :string
     t.column "description_en", :text
     t.column "description_fr", :text
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "position", :integer
+    t.column "created_at",     :datetime
+    t.column "updated_at",     :datetime
+    t.column "position",       :integer
   end
 
   create_table "sessions", :force => true do |t|
     t.column "session_id", :string
-    t.column "data", :text
+    t.column "data",       :text
     t.column "updated_at", :datetime
   end
 

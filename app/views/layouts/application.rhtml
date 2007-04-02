@@ -12,6 +12,7 @@
 							<div id="header">
 								<div id="topmenu">
 									<ul id="nav">
+								   	<% if controller.action_name == 'show' %><% if @gallery.hidden == true %><li><%= link_to 'Private', { :controller => 'gallery' } %></li><% end %><% end %>									
 								   	<li><%= link_to 'Galleries', { :controller => 'gallery' } %></li>
 										<li><%= link_to 'Contact', { :controller => 'index', :action => 'contact' } %></li>					
 									</ul>

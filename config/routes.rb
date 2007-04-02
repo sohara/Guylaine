@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   # map.connect '', :controller => "welcome"
   map.connect 'admin', :controller => 'admin/gallery', :action => 'index'
-  
+  map.connect 'private', :controller => 'gallery', :action => 'list_hidden'
   map.connect '', :controller => 'gallery', :action => 'index'
   
   map.connect 'contact', :controller => 'index', :action => 'contact'
