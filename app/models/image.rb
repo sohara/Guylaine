@@ -16,6 +16,8 @@ class Image < ActiveRecord::Base
   # Sets the actual binary data.  This is typically called by uploaded_data=, but you can call this
   # manually if you're creating from the console.  This is also where the resizing occurs.
   def attachment_data=(data)
+    logger.info "in attachment_data model method"
+    logger.info "Self is #{self.class}"
     if data.nil?
       @attachment_data = nil
       @save_attachment = false
@@ -28,8 +30,9 @@ class Image < ActiveRecord::Base
           resized_img       = (attachment_options[:resize_to] && parent_id.nil?) ? 
             thumbnail_for_image(img, attachment_options[:resize_to]) : img
             
-            #if the image is not a thumbnail size then we will add a watermark 
-            if resized_img.columns > 250
+            #if the image is not a thumbnail size then we will add a watermark, but only if it is a public gallery.
+            logger.info "self.parent.gallery.hidden? is #{self.parent.gallery.hidden?}"
+            if resized_img.columns > 250 and self.parent.gallery.hidden? == false
               mark = Magick::ImageList.new("#{RAILS_ROOT}/public/images/watermark3.png")
               resized_img = resized_img.dissolve(mark,0.09,1.0,Magick::SouthWestGravity)
             end

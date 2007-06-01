@@ -2,6 +2,7 @@ class Admin::ImageController < Admin::BaseController
 
   def create
     @gallery = Gallery.find(params[:gallery_id])
+    params[:image][:gallery_id] = params[:gallery_id]
     @image = Image.create! params[:image]
     @gallery.images << @image
     flash[:notice] = 'Image added.'
