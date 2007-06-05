@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/main.css?1172503473 */
+
 html, body {
 	height: 100%;
 }
@@ -83,16 +85,20 @@ a:focus, a:hover {
 }
 
 #main-gallery li {
-	width:252px;
-	height:  252px;
-	background:#333;
+	width:212px;
+	height:  212px;
+	background: #222;
 	padding:10px;
 	text-align:center;
 	position:relative;
 	float:left;
 	display: inline;
-	margin:5px;
-	line-height: 252px;	
+	margin:5px 77px 5px 0;
+	line-height: 212px;	
+}
+
+#main-gallery li.right {
+	margin:5px 0px 5px 0;
 }
 
 #main-gallery li img {
