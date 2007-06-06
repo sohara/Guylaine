@@ -5,7 +5,7 @@
 <br class="clearboth" />
 <ul>
 <% for @gallery in @galleries %>
-<li class="<%= cycle("left", "middle", "right") -%>"><span class="image-wrap"><%= link_to(image_tag(@gallery.images.sort_by{|i| i.position}.first.public_filename('size250')), 
+<li class="<%= cycle("one", "two", "three", "four") -%>"><span class="image-wrap"><%= link_to(image_tag(@gallery.images.sort_by{|i| i.position}.first.public_filename('size250')), 
 					:action => 'show', :id => @gallery ) %>
 </span></li>
 <% end -%>
