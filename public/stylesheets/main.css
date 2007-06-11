@@ -2,6 +2,7 @@
 	http://localhost:3000/stylesheets/main.css?1172503473
 	http://localhost:3000/stylesheets/main.css?1181071676
 	http://localhost:3000/stylesheets/main.css?1181096458
+	http://localhost:3000/stylesheets/main.css?1181096528
 */
 
 html, body {
@@ -64,6 +65,12 @@ p {
 	font-size: .9em;
 	padding-bottom: 1em;
 }
+
+p.title {
+	margin: 0;
+	padding: 0;
+	height: 25px;
+	color: #767676}
 
 a, a:link, a:visited {	color: #630000; 
 	text-decoration: none;
