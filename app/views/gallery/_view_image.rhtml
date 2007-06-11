@@ -2,7 +2,7 @@
 <% @image = @gallery.images.sort_by{ |i| i.position }.first %>	
 <% end %>
 <%= image_tag(@image.public_filename('size800')) %>
-<p class="title"><%= @image.title_en %></p>
+<% unless @image.title_en.blank? %><p class="title"><%= @image.title_en %></p><% end %>
 <div id="navbar">
 	<div style="float:right">
 				<% unless @image.gallery.images.sort_by{|i|i.position}[@image.gallery.images.sort_by{|i| i.position}.index(@image) + 1].nil? %>
