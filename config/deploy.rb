@@ -13,6 +13,8 @@ require 'mongrel_cluster/recipes'
 
 set :application, "guylaine"
 set :repository, "http://sohara.com/svn-guylaine/guylaine/trunk"
+set :checkout, "export"
+set :keep_releases, 4
 
 # =============================================================================
 # ROLES
@@ -23,15 +25,15 @@ set :repository, "http://sohara.com/svn-guylaine/guylaine/trunk"
 # be used to single out a specific subset of boxes in a particular role, like
 # :primary => true.
 
-role :web, "209.172.33.52"
-role :app, "209.172.33.52"
-role :db,  "209.172.33.52", :primary => true
+role :web, "209.172.35.182"
+role :app, "209.172.35.182"
+role :db,  "209.172.35.182", :primary => true
 
 # =============================================================================
 # OPTIONAL VARIABLES
 # =============================================================================
-set :deploy_to, "/var/vhosts/sohara.com/guylaine" # defaults to "/u/apps/#{application}"
-set :user, "soharaweb"            # defaults to the currently logged in user
+set :deploy_to, "/var/vhosts/guylainebedard.ca/guylaine" # defaults to "/u/apps/#{application}"
+set :user, "guylaineweb"            # defaults to the currently logged in user
 # set :scm, :darcs               # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
