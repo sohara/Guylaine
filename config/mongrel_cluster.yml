@@ -1,8 +1,8 @@
 --- 
-cwd: /var/vhosts/sohara.com/guylaine/current
+cwd: /var/vhosts/guylainebedard.ca/guylaine/current
 port: "8010"
 environment: production
 #address: 127.0.0.1
 pid_file: log/mongrel.pid
-config_script: /var/vhosts/sohara.com/guylaine/current/config/mongrel_upload_progress.config
+config_script: /var/vhosts/guylainebedard.ca/guylaine/current/config/mongrel_upload_progress.config
 servers: 3
