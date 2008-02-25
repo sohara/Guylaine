@@ -109,17 +109,13 @@ end
 
 desc "Create the symlink to the database.yml file in /shared"
 task :db_sym_link, :roles => :app do
-    run "ln -s /var/vhosts/sohara.com/guylaine/shared/database.yml #{current_release}/config/database.yml"
+    run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/database.yml #{current_release}/config/database.yml"
 end
 
-desc "Create symlink to svn checkout of edge rails in /shared rails doesn't get checked out with every deploy"
-task :edge_rails_sym_link, :roles => :app do
-    run "ln -s /var/vhosts/sohara.com/guylaine/shared/rails #{current_release}/vendor/rails"
-end
 
 desc "Create the symlink to the image dirs for uploaded images"
 task :image_sym_link, :roles => :app do
-  run "ln -s /var/vhosts/sohara.com/guylaine/shared/uploaded #{current_release}/public/uploaded"
+  run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/uploaded #{current_release}/public/uploaded"
 end
 
 desc <<-DESC
@@ -131,7 +127,6 @@ deploy.task :default do
     update_code
     image_sym_link
     db_sym_link
-    edge_rails_sym_link
     symlink
   end
   cleanup
