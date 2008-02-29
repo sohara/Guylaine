@@ -42,7 +42,7 @@ module SimpleHTTPAuthentication #:nodoc:
       if controller.action_name.intern == @logout_action
         controller.response.headers["Status"] = "Unauthorized"
         controller.response.headers["WWW-Authenticate"] = "Basic realm=\"#{@realm}\""
-        controller.render :action => @logout_action.to_s, :status => 401
+        controller.send :render, :action => @logout_action.to_s, :status => 401
         return false
       elsif (@only_actions.include?(controller.action_name.intern) || @only_actions.empty?) && !@except_actions.include?(controller.action_name.intern)
         username, password = get_auth_data(controller)
@@ -65,7 +65,7 @@ module SimpleHTTPAuthentication #:nodoc:
         unless authenticated
           controller.response.headers["Status"] = "Unauthorized"
           controller.response.headers["WWW-Authenticate"] = "Basic realm=\"#{@realm}\""
-          controller.render :text => @error_msg, :status => 401
+          controller.send :render, :text => @error_msg, :status => 401
         end
         return authenticated
       end
