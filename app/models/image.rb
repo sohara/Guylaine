@@ -2,7 +2,7 @@ class Image < ActiveRecord::Base
   acts_as_attachment  :storage => :file_system, 
                       :content_type => :image, 
                       :file_system_path  => 'public/uploaded',
-                      :thumbnails => { :size800 => '800>', :size250 => '170>', :size96 => '96>' },
+                      :thumbnails => { :size800 => '800X800>', :size250 => '170X170>', :size96 => '96X96>' },
                       :max_size => 7.megabytes
   validates_as_attachment
 #  validates_presence_of :title_en, :title_fr, :message => "must be present"
