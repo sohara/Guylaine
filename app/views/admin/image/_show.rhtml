@@ -1,17 +1,17 @@
-<li class="picture" id="image_<%= @image.id %>">
+<li class="picture" id="image_<%= image.id %>">
 	<div style="float:right;">
-		<%= link_to_remote "Destroy", 	:url => { :controller => :image, :action => "destroy", :id => @image },
-															:loading => "Element.show('image_spinner#{@image.id}')",
-															:complete => "Element.hide('image_spinner#{@image.id}')",
+		<%= link_to_remote "Destroy", 	:url => { :controller => :image, :action => "destroy", :id => image },
+															:loading => "Element.show('image_spinner#{image.id}')",
+															:complete => "Element.hide('image_spinner#{image.id}')",
 															:confirm => "Are you sure you want to delete this image?" %>
 	</div>
-<%= link_to_remote(image_tag(@image.public_filename('size96')), 
-									:url => {:controller => :image, :action => :view_image, :id => @image}) %>
-Title (en): <%= @image.title_en %><br class="clearnone"/>
-Image Size: <%= @image.width.to_s + " X " + @image.height.to_s %> px <br class="clearnone"/>
-File Size: <%= (@image.size / 1024).to_s %> Kilobytes <br class="clearnone"/>
-<%= link_to_remote "Edit", 	:url => { :controller => :image, :action => :edit, :id => @image },							
-														:loading => "Element.show('image_spinner#{@image.id}')",
-														:complete => "Element.hide('image_spinner#{@image.id}')" %> <span id="image_spinner<%= @image.id %>" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span><br />
+<%= link_to_remote(image_tag(image.public_filename('size96')), 
+									:url => {:controller => :image, :action => :view_image, :id => image}) %>
+Title (en): <%= image.title_en %><br class="clearnone"/>
+Image Size: <%= image.width.to_s + " X " + image.height.to_s %> px <br class="clearnone"/>
+File Size: <%= (image.size / 1024).to_s %> Kilobytes <br class="clearnone"/>
+<%= link_to_remote "Edit", 	:url => { :controller => :image, :action => :edit, :id => image },							
+														:loading => "Element.show('image_spinner#{image.id}')",
+														:complete => "Element.hide('image_spinner#{image.id}')" %> <span id="image_spinner<%= image.id %>" style="display:none;"><%= image_tag "spinner-trans.gif", :class => "spinner" %></span><br />
 <br  class="clearboth"/>
 </li>

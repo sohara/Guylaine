@@ -14,13 +14,11 @@
 	<h3>Add an image</h3>
 	<%= error_messages_for 'image' %>
 	
-	<% @upid = Time.now.to_i.to_s %>	
 	<% form_for :image, 
 							:url => { :controller => 'image', 
 												:action => 'create',:upload_id => @upid }, 
 							:html => { 	:multipart => true, 
 												 	:target => 'upload', 
-													:onsubmit => "UploadProgress.monitor('#{escape_javascript @upid}')",
 													:id => 'image_form',
 													:class => 'myform'}  do |f| -%>
 		
@@ -29,7 +27,6 @@
 	<% end -%>
 
 	<div id="results"></div>
-	<div id="progress-bar"></div>
 
 	<iframe id="upload" name="upload" src="about:blank" style="border: 0px none ; position: absolute; left: -100px; width: 0px; height: 0px;"></iframe>
 	
@@ -50,8 +47,8 @@
 	<h3>Images in Gallery</h3>
 	<ul class="image-list" id="gallery-image-list">
 		
-		<% for @image in @gallery.images.sort_by{|image| image.position} %>
-		<%= render :partial => 'admin/image/show', :collection => @artist_images %>
+		<% @gallery.images.sort_by{|image| image.position}.each do |image| %>
+      <%= render :partial => 'admin/image/show', :locals => {:image => image} %>
 		<% end %>
 		
 	</ul>

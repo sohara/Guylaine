@@ -2,15 +2,12 @@ class Admin::ImageController < Admin::BaseController
 
   def create
     @gallery = Gallery.find(params[:gallery_id])
-    params[:image][:gallery_id] = params[:gallery_id]
-    @image = Image.create! params[:image]
-    @gallery.images << @image
+    @image = @gallery.images.create(params[:image])
     flash[:notice] = 'Image added.'
     responds_to_parent do
       render :update do |page|
-        page << "UploadProgress.finish();"
         page.insert_html :top, "image_form", '<p style="color:green;">Image uploaded</p>'
-        page.insert_html :bottom, 'gallery-image-list', :partial => 'show'
+        page.insert_html :bottom, 'gallery-image-list', :partial => 'show', :locals => {:image => @image}
         #Sortable list needs to be reinitialized after adding a new element (image)
         page << "Sortable.create('gallery-image-list', {onUpdate:function(){new Ajax.Request('/admin/image/sort/#{@image.gallery.id}', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Highlight('gallery-image-list',{});}, parameters:Sortable.serialize('gallery-image-list')})}})"
         page["image_#{@image.id}"].visual_effect :highlight, :startcolor => "#cf2121", :endcolor => "#E8E8E8"
