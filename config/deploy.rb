@@ -14,8 +14,11 @@ set :application, "guylaine"
 set :scm, :git
 set :repository, "git@github.com:sohara/Guylaine.git"
 set :scm_verbose, true
-set :deploy_via, :remote_cache
 set :keep_releases, 4
+default_run_options[:pty] = true  # Must be set for the password prompt from git to work
+ssh_options[:forward_agent] = true
+set :use_sudo, false
+set :deploy_via, :remote_cache
 
 # =============================================================================
 # ROLES
@@ -110,6 +113,7 @@ end
 desc "Create the symlink to the database.yml file in /shared"
 task :db_sym_link, :roles => :app do
     run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/database.yml #{current_release}/config/database.yml"
+    run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/pids #{current_release}/tmp/pids"
 end
 
 
