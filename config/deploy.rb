@@ -9,11 +9,12 @@
 # repository must be the URL of the repository you want this recipe to
 # correspond to. The deploy_to path must be the path on each machine that will
 # form the root of the application path.
-require 'mongrel_cluster/recipes'
 
 set :application, "guylaine"
-set :repository, "http://sohara.com/svn-guylaine/guylaine/trunk"
-set :checkout, "export"
+set :scm, :git
+set :repository, "git@github.com:sohara/Guylaine.git"
+set :scm_verbose, true
+set :deploy_via, :remote_cache
 set :keep_releases, 4
 
 # =============================================================================
@@ -39,7 +40,6 @@ set :user, "guylaineweb"            # defaults to the currently logged in user
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
 # set :cvs, "/path/to/cvs"       # defaults to searching the PATH
 # set :gateway, "gate.host.com"  # default to no gateway
-set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 
 # =============================================================================
 # SSH OPTIONS
@@ -130,7 +130,6 @@ deploy.task :default do
     symlink
   end
   cleanup
-  restart_mongrel_cluster
 end
 
 # You can use "transaction" to indicate that if any of the tasks within it fail,
