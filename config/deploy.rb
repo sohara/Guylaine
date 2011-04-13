@@ -10,6 +10,16 @@
 # correspond to. The deploy_to path must be the path on each machine that will
 # form the root of the application path.
 
+#requrire bundler's capistrano tasks to automate gem installation during deployment
+require "bundler/capistrano"
+
+#itegration for capistrano with rvm
+set :rvm_type, :user                      # we have RVM in home dir, not system-wide install
+$:.unshift("#{ENV["HOME"]}/.rvm/lib")     # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                  # Load RVM's capistrano plugin.
+set :rvm_ruby_string, 'ruby-1.9.2'   # Or whatever env you want it to run in.
+#end integration
+
 set :application, "guylaine"
 set :scm, :git
 set :repository, "git@github.com:sohara/Guylaine.git"
@@ -29,9 +39,9 @@ set :deploy_via, :remote_cache
 # be used to single out a specific subset of boxes in a particular role, like
 # :primary => true.
 
-role :web, "209.172.35.182"
-role :app, "209.172.35.182"
-role :db,  "209.172.35.182", :primary => true
+role :web, "184.107.185.178"
+role :app, "184.107.185.178"
+role :db,  "184.107.185.178", :primary => true
 
 # =============================================================================
 # OPTIONAL VARIABLES
