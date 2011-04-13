@@ -123,7 +123,6 @@ end
 desc "Create the symlink to the database.yml file in /shared"
 task :db_sym_link, :roles => :app do
     run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/database.yml #{current_release}/config/database.yml"
-    run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/pids #{current_release}/tmp/pids"
 end
 
 
