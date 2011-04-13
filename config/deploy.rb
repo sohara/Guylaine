@@ -13,6 +13,13 @@
 #requrire bundler's capistrano tasks to automate gem installation during deployment
 require "bundler/capistrano"
 
+#itegration for capistrano with rvm
+set :rvm_type, :user                      # we have RVM in home dir, not system-wide install
+$:.unshift("#{ENV["HOME"]}/.rvm/lib")     # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                  # Load RVM's capistrano plugin.
+set :rvm_ruby_string, 'ruby-1.8.7'   # Or whatever env you want it to run in.
+#end integration
+
 set :application, "guylaine"
 set :scm, :git
 set :repository, "git@github.com:sohara/Guylaine.git"
