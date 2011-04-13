@@ -47,7 +47,7 @@ role :db,  "184.107.185.178", :primary => true
 # OPTIONAL VARIABLES
 # =============================================================================
 set :deploy_to, "/var/vhosts/guylainebedard.ca/guylaine" # defaults to "/u/apps/#{application}"
-set :user, "guylaineweb"            # defaults to the currently logged in user
+set :user, "alien8web"            # defaults to the currently logged in user
 # set :scm, :darcs               # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
