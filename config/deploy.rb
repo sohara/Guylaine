@@ -161,3 +161,16 @@ task :long_deploy do
   restart
   enable_web
 end
+
+## Tasks to restart passenger standalone
+namespace :deploy do
+  task :start, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec passenger start -a 127.0.0.1 -p 3001 --socket /tmp/passenger.socket --daemonize --environment production"
+  end
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec passenger stop --pid-file tmp/pids/passenger.pid"
+  end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
+  end
+end
