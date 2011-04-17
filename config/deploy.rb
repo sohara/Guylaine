@@ -164,12 +164,15 @@ end
 
 ## Tasks to restart passenger standalone
 namespace :deploy do
+  desc "Start passenger standalone"
   task :start, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && bundle exec passenger start -a 127.0.0.1 -p 3001 --socket /tmp/passenger.socket --daemonize --environment production"
+    run "cd #{current_path} && bundle exec passenger start -a 127.0.0.1 -p 3001 --daemonize --environment production"
   end
+  desc "Stop passenger standalone on the server"
   task :stop, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && bundle exec passenger stop --pid-file tmp/pids/passenger.pid"
+    run "cd #{current_path} && bundle exec passenger stop --port 3001"
   end
+  desc "Retart passenger standalone"
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
   end
