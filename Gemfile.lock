@@ -11,15 +11,12 @@ GEM
     activeresource (2.3.8)
       activesupport (= 2.3.8)
     activesupport (2.3.8)
-    daemon_controller (0.2.5)
+    daemon_controller (0.2.6)
     fastthread (1.0.7)
-    file-tail (1.0.5)
-      spruz (>= 0.1.0)
     mysql (2.8.1)
-    passenger (3.0.1)
+    passenger (3.0.7)
       daemon_controller (>= 0.2.5)
       fastthread (>= 1.0.1)
-      file-tail
       rack
       rake (>= 0.8.1)
     rack (1.1.2)
@@ -30,9 +27,8 @@ GEM
       activeresource (= 2.3.8)
       activesupport (= 2.3.8)
       rake (>= 0.8.3)
-    rake (0.8.7)
+    rake (0.9.2)
     rmagick (2.13.1)
-    spruz (0.2.2)
 
 PLATFORMS
   ruby
