@@ -27,8 +27,8 @@ set :repository, "git@github.com:sohara/Guylaine.git"
 set :scm_verbose, true
 set :git_shallow_clone, 1
 set :keep_releases, 4
-# default_run_options[:pty] = true  # Must be set for the password prompt from git to work
-# set :ssh_options, { :forward_agent => true }
+default_run_options[:pty] = true  # Must be set for the password prompt from git to work
+set :ssh_options, { :forward_agent => true }
 set :use_sudo, false
 set :deploy_via, :export
 
