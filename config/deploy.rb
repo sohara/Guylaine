@@ -20,15 +20,17 @@ require "rvm/capistrano"                  # Load RVM's capistrano plugin.
 set :rvm_ruby_string, 'ruby-1.8.7'   # Or whatever env you want it to run in.
 #end integration
 
+set :user, 'alien8web'
 set :application, "guylaine"
 set :scm, :git
 set :repository, "git@github.com:sohara/Guylaine.git"
 set :scm_verbose, true
+set :git_shallow_clone, 1
 set :keep_releases, 4
 # default_run_options[:pty] = true  # Must be set for the password prompt from git to work
 # set :ssh_options, { :forward_agent => true }
 set :use_sudo, false
-set :deploy_via, :remote_cache
+set :deploy_via, :export
 
 # =============================================================================
 # ROLES
