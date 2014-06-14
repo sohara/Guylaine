@@ -1,16 +1,16 @@
 # Be sure to restart your web server when you modify this file.
 
 # Following configurations are for the use of Unicode strings
-$KCODE = 'u'
-require 'jcode'
-require 'rubygems'
-gem 'rmagick'
+# $KCODE = 'u'
+# require 'jcode'
+# require 'rubygems'
+# gem 'rmagick'
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.17'
+# RAILS_GEM_VERSION = '2.3.17'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
