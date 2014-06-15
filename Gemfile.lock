@@ -8,6 +8,8 @@ GEM
       rack (~> 1.1.0)
     activerecord (2.3.17)
       activesupport (= 2.3.17)
+    activerecord-mysql2-adapter (0.0.3)
+      mysql2
     activeresource (2.3.17)
       activesupport (= 2.3.17)
     activesupport (2.3.17)
@@ -41,6 +43,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-mysql2-adapter (~> 0.0.3)
   capistrano
   mysql2 (~> 0.3.16)
   rails (= 2.3.17)
