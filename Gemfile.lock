@@ -20,7 +20,7 @@ GEM
     daemon_controller (0.2.6)
     fastthread (1.0.7)
     highline (1.6.15)
-    mysql2 (0.2.19b6)
+    mysql2 (0.3.16)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.1)
@@ -49,7 +49,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  mysql2 (~> 0.2.19b6)
+  mysql2 (~> 0.3.16)
   passenger
   rails (= 2.3.17)
   rmagick (= 2.13.2)
