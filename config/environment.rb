@@ -45,6 +45,10 @@ Rails::Initializer.run do |config|
 
   # See Rails::Configuration for more options
 
+  # Prevent template encoding errors
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+
 end
 
 # Add new inflection rules using the following format
