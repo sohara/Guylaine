@@ -90,7 +90,7 @@ end
 
 desc "Create the symlink to the image dirs for uploaded images"
 task :image_sym_link, :roles => :app do
-  run "ln -s /var/vhosts/guylainebedard.ca/guylaine/shared/uploaded #{current_release}/public/uploaded"
+  run "ln -s #{deploy_to}/shared/uploaded #{current_release}/public/uploaded"
 end
 
 desc <<-DESC
